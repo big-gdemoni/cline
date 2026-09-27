@@ -1,6 +1,17 @@
 import { parseKeyPairsIntoRecord } from "../parse/headers/utils";
 import type { OpenTelemetryClientConfig, TelemetryMetadata } from "./telemetry";
 
+declare module "./telemetry" {
+	interface OpenTelemetryClientConfig {
+		/**
+		 * Custom OTel resource attributes, parsed from CLINE_OTEL_RESOURCE_ATTRIBUTES
+		 * (comma-separated key=value pairs). Spread before Cline's built-in identity
+		 * fields so service.name/service.version always take precedence.
+		 */
+		resourceAttributes?: Record<string, string>;
+	}
+}
+
 export interface ClineTelemetryServiceConfig extends OpenTelemetryClientConfig {
 	metadata: TelemetryMetadata;
 }
