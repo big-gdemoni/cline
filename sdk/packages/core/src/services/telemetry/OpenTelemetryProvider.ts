@@ -163,7 +163,7 @@ export class OpenTelemetryProvider {
 
 	constructor(options: OpenTelemetryProviderOptions = {}) {
 		this.options = options;
-		const resource = resourceFromAttributes({
+		const resource = resourceFromAttributes({ ...options.resourceAttributes,
 			[ATTR_SERVICE_NAME]: options.serviceName ?? "cline",
 			...(options.serviceVersion
 				? { [ATTR_SERVICE_VERSION]: options.serviceVersion }
