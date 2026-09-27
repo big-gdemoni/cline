@@ -27,6 +27,9 @@ function getTelemetryBuildTimeConfig(): OpenTelemetryClientConfig {
 		otlpHeaders: process.env.OTEL_EXPORTER_OTLP_HEADERS
 			? parseKeyPairsIntoRecord(process.env.OTEL_EXPORTER_OTLP_HEADERS)
 			: undefined,
+		resourceAttributes: process.env.CLINE_OTEL_RESOURCE_ATTRIBUTES
+			? parseKeyPairsIntoRecord(process.env.CLINE_OTEL_RESOURCE_ATTRIBUTES)
+			: undefined,
 	};
 }
 
